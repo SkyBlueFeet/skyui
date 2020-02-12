@@ -27,10 +27,7 @@
                 "eslint:recommended",
                 "google",
                 "plugin:prettier/recommended"
-            ],
-            "rules": {
-                "require-jsdoc": 0
-            }
+            ]
         },
         {
             "files": ["*.ts", "*.tsx"],

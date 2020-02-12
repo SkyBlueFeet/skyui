@@ -1,22 +1,15 @@
+import WebpackDevServer from "webpack-dev-server";
+import webpack, { Configuration } from "webpack";
+
 process.env.NODE_ENV = "development";
 
-import express, { Handler } from "express";
-import path from "path";
-import ssr from "../router/ssr";
-import render from "../frame/render";
+import assembly from "../config/assembly";
 
-const resolve = (file: string): string => path.resolve(process.cwd(), file);
-const app = express();
+assembly("development")
+    .then((devConfig: Configuration) => {
+        const Compile = webpack(devConfig);
+        const app = new WebpackDevServer(Compile, devConfig.devServer);
 
-const serve = (path: string): Handler => {
-    return express.static(resolve(path), { maxAge: 0 });
-};
-
-app.use("/dist", serve("./dist"));
-app.use("/public", serve("./static"));
-
-app.use("/app", ssr(render(app)));
-
-const port = process.env.PORT || 8080;
-
-app.listen(port);
+        app.listen(devConfig.devServer.port, error => console.error(error));
+    })
+    .catch(reason => console.error(reason));
