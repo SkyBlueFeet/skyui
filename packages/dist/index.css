@@ -1,0 +1,13 @@
+.v-list {
+  color: #7fffd4;
+}.v-list-item {
+  font-size: 1rem;
+}
+
+.v-list-item {
+  color: #0ff;
+}
+
+.v-list-item:hover {
+  color: #8a2be2;
+}
