@@ -1,6 +1,6 @@
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-
+import ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 import config from ".";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -26,6 +26,7 @@ export function assetsPath(_path: string): string {
 }
 
 /**
+ * @deprecated
  * vue-loader@15版本废弃loaders配置
  * @param options
  */
@@ -65,12 +66,19 @@ function cssLoaders(options: LoaderOption): Record<string, RuleSetUse> {
         }
         function generate(
             extract = false,
-            loaders: RuleSetUseItem[]
+            needLoaders: RuleSetUseItem[] = loaders
         ): RuleSetUseItem[] {
-            let _loaders: RuleSetUseItem[] = extract
-                ? [MiniCssExtractPlugin.loader]
+            const _loaders: RuleSetUseItem[] = extract
+                ? [
+                      {
+                          loader: ExtractCssChunks.loader,
+                          options: {
+                              hmr: process.env.NODE_ENV === "development"
+                          }
+                      }
+                  ]
                 : ["vue-style-loader"];
-            _loaders = _loaders.concat(loaders);
+            _loaders.push(...needLoaders);
             return _loaders;
         }
 

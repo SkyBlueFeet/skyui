@@ -6,6 +6,7 @@ import webpack from "webpack";
 import config from "..";
 
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 import OptimizeCSSPlugin from "optimize-css-assets-webpack-plugin";
 import UglifyJsPlugin from "uglifyjs-webpack-plugin";
 import CompressionWebpackPlugin from "compression-webpack-plugin";
@@ -28,7 +29,7 @@ const WebpackBuildConfig: webpack.Configuration = {
     },
     plugins: [
         // extract css into its own file
-        new MiniCssExtractPlugin({
+        new ExtractCssChunks({
             filename: utils.assetsPath("css/[name].min.css"),
             chunkFilename: utils.assetsPath("css/[name].[contenthash].css")
         }),

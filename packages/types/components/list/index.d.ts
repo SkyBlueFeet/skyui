@@ -1,2 +1,2 @@
-import VList from "./main";
+import VList from "./list.vue";
 export default VList;

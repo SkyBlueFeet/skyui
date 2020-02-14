@@ -128,6 +128,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-vue": "^6.0.1",
     "express": "^4.17.1",
+    "extract-css-chunks-webpack-plugin": "^4.7.4",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "happypack": "^5.0.0",

@@ -44,7 +44,8 @@ const devWebpackConfig: webpack.Configuration = {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.dev.cssSourceMap,
-            usePostCSS: true
+            usePostCSS: true,
+            extract: false
         })
     },
     devServer: DevServer,

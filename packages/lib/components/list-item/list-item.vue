@@ -2,7 +2,6 @@
 import { formatDate } from "../../utils/util";
 import { VNode, VueConstructor, CreateElement } from "vue/types/umd";
 import { Vue, Prop, Component } from "vue-property-decorator";
-import "./test1.scss";
 
 interface ListItem {
     title: string;
