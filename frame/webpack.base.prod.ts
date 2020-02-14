@@ -6,11 +6,11 @@ import baseConfig from "./webpack.base";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import UglifyJsPlugin from "uglifyjs-webpack-plugin";
 
-// class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
-//     getCssChunkObject(mainChunk: any): object {
-//         return {};
-//     }
-// }
+class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
+    getCssChunkObject(mainChunk): object {
+        return {};
+    }
+}
 
 export default merge(baseConfig, {
     mode: "production",
@@ -66,7 +66,7 @@ export default merge(baseConfig, {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        loader: ServerMiniCssExtractPlugin.loader
                     },
                     {
                         loader: "css-loader"
@@ -80,7 +80,7 @@ export default merge(baseConfig, {
                 test: /\.less$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        loader: ServerMiniCssExtractPlugin.loader
                     },
                     {
                         loader: "css-loader"
@@ -97,7 +97,7 @@ export default merge(baseConfig, {
                 test: /\.(sa|sc)ss$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        loader: ServerMiniCssExtractPlugin.loader
                     },
                     {
                         loader: "css-loader"
@@ -114,7 +114,7 @@ export default merge(baseConfig, {
     },
 
     plugins: [
-        new MiniCssExtractPlugin({
+        new ServerMiniCssExtractPlugin({
             filename: "[contenthash].css"
         }),
         new webpack.HashedModuleIdsPlugin({

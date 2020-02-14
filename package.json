@@ -5,8 +5,8 @@
     "scripts": {
         "watch:dev": "ts-node --project tsconfig.frame.json script/dev.ts",
         "preview": "ts-node --project tsconfig.frame.json script/prod.ts",
-        "build:prod": "rimraf dist && ts-node script/build",
-        "start": "export PORT=7070 NODE_ENV=production && node server.js",
+        "build:prod": "rimraf dist && ts-node --project tsconfig.frame.json script/build",
+        "start": "ts-node --project tsconfig.frame.json script/prod.ts",
         "format": "prettier --write \"*/**/*.ts\" \"*/**/*.vue\" \"*/**/*.tsx\" \"*/**/*.js\" \"*/**/*.jsx\" \"*/**/*.json\"",
         "release": "standard-version",
         "cz": "git add . && git-cz"

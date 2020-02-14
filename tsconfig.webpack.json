@@ -2,8 +2,7 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "noEmitOnError": true,
-        "declaration": true,
-        "declarationDir": "types",
+        "declaration": false,
         "jsx": "preserve",
         "jsxFactory": "h",
         "removeComments": true,

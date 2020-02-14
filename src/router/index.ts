@@ -1,17 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HomeView from "../views/Home.view.vue";
-import DetailView from "../views/Detail.view.vue";
 
 Vue.use(Router);
 
+/**
+ * SSR异步组件报错document is not defined
+ * https://github.com/SkyBlueFeet/skyui/issues/6
+ */
+
 type vueModule = Promise<typeof import("*.vue")>;
 
-//无法使用异步router
-//https://segmentfault.com/q/1010000016459292
-
-// const HomeView = (): vueModule => import("../views/Home.view.vue");
-// const DetailView = (): vueModule => import("../views/Detail.view.vue");
+const HomeView = (): vueModule => import("../views/Home.view.vue");
+const DetailView = (): vueModule => import("../views/Detail.view.vue");
 
 export function createRouter(): Router {
     return new Router({
