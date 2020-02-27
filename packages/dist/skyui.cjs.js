@@ -5,111 +5,46 @@
  */
 'use strict';
 
-var vuePropertyDecorator = require('vue-property-decorator');
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-function __decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
-
-var formatNumber = function formatNumber(n) {
-  return ("0" + n.toString()).slice(-2);
-};
-var formatDate = function formatDate(date, format) {
-  if (format === void 0) {
-    format = "yyyy-MM-dd hh:mm:ss";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var script = {
+  name: "v-button",
+  props: {
+    type: {
+      type: String,
+      "default": "default"
+    },
+    size: {
+      type: String,
+      "default": "default"
+    },
+    icon: {
+      type: String,
+      "default": ""
+    },
+    plain: Boolean,
+    disabled: Boolean,
+    round: Boolean
+  },
+  data: function data() {
+    return {
+      msg: "button"
+    };
   }
-
-  if (!date) return;
-  var Y = date.getFullYear();
-  var M = date.getMonth() + 1;
-  var D = date.getDate();
-  var h = date.getHours();
-  var m = date.getMinutes();
-  var s = date.getSeconds();
-  var rules = {
-    yyyy: Y,
-    M: M,
-    MM: formatNumber(M),
-    d: D,
-    dd: formatNumber(D),
-    h: h,
-    hh: formatNumber(h),
-    m: m,
-    mm: formatNumber(m),
-    s: s,
-    ss: formatNumber(s)
-  };
-  var arr = format.split(/-| |:|\//);
-  var formatDate = format;
-
-  for (var i = 0; i < arr.length; i++) {
-    var el = arr[i];
-    formatDate = formatDate.replace(el, rules[el]);
-  }
-
-  return formatDate;
 };
-
-var List =
-/** @class */
-function (_super) {
-  __extends(List, _super);
-
-  function List() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.name = "v-list";
-    _this.date = formatDate(new Date());
-    return _this;
-  }
-
-  List.prototype.render = function (h) {
-    return h("div", {
-      "class": "v-list"
-    }, [this.$slots.default, h("div", {
-      "class": "v-list-date"
-    }, [h("div", {
-      "class": "v-list-date-label"
-    }, ["\u5F53\u524D\u65F6\u95F4\uFF1A"]), h("div", {
-      "class": "v-list-date-text"
-    }, [this.date])])]);
-  };
-
-  List = __decorate([vuePropertyDecorator.Component({})], List);
-  return List;
-}(vuePropertyDecorator.Vue);
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
 /* server only */
@@ -197,9 +132,37 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
 var normalizeComponent_1 = normalizeComponent;
 
 /* script */
-var __vue_script__ = List;
+var __vue_script__ = script;
 /* template */
 
+var __vue_render__ = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('button', {
+    staticClass: "v-btn",
+    "class": ['v-btn__' + _vm.type, {
+      'is-plain': _vm.plain,
+      'is-disabled': _vm.disabled,
+      'is-round': _vm.round
+    }, 'v-btn__size-' + _vm.size],
+    attrs: {
+      "disabled": _vm.disabled
+    },
+    on: {
+      "click": function click($event) {
+        return _vm.$emit('click');
+      }
+    }
+  }, [_vm.icon !== '' ? _c('i', {
+    "class": _vm.icon
+  }) : _vm._e(), _vm._v(" "), _vm._t("default")], 2);
+};
+
+var __vue_staticRenderFns__ = [];
 /* style */
 
 var __vue_inject_styles__ = undefined;
@@ -211,82 +174,28 @@ var __vue_scope_id__ = undefined;
 var __vue_module_identifier__ = undefined;
 /* functional template */
 
-var __vue_is_functional_template__ = undefined;
+var __vue_is_functional_template__ = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__ = normalizeComponent_1({}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+var __vue_component__ = normalizeComponent_1({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+
+/**
+ * @author monkeywang
+ * Date: 17/11/9
+ */
 
 __vue_component__["install"] = function (Vue) {
   Vue.component(__vue_component__.name, __vue_component__);
 };
 
-var VListItem =
-/** @class */
-function (_super) {
-  __extends(VListItem, _super);
-
-  function VListItem() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.name = "v-list-item";
-    return _this;
-  }
-
-  VListItem.prototype.render = function (h) {
-    return h("div", [this.list.map(function (item) {
-      return h("a", {
-        "class": "v-list-item",
-        "attrs": {
-          "href": item.url
-        }
-      }, [item.title]);
-    })]);
-  };
-
-  __decorate([vuePropertyDecorator.Prop({
-    // []
-    default: [],
-    required: true,
-    type: Array
-  })], VListItem.prototype, "list", void 0);
-
-  VListItem = __decorate([vuePropertyDecorator.Component({})], VListItem);
-  return VListItem;
-}(vuePropertyDecorator.Vue);
-
-/* script */
-var __vue_script__$1 = VListItem;
-/* template */
-
-/* style */
-
-var __vue_inject_styles__$1 = undefined;
-/* scoped */
-
-var __vue_scope_id__$1 = undefined;
-/* module identifier */
-
-var __vue_module_identifier__$1 = undefined;
-/* functional template */
-
-var __vue_is_functional_template__$1 = undefined;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-var __vue_component__$1 = normalizeComponent_1({}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
-
-__vue_component__$1["install"] = function (Vue) {
-  Vue.component(__vue_component__$1.name, __vue_component__$1);
-};
-
-var components = [__vue_component__, __vue_component__$1];
+var components = [__vue_component__];
 
 var install = function install(Vue) {
   components.map(function (component) {
@@ -300,8 +209,7 @@ if (typeof window !== "undefined" && window.Vue) {
 
 var index = {
   install: install,
-  VList: __vue_component__,
-  VListItem: __vue_component__$1
+  VButton: __vue_component__
 };
 
 module.exports = index;

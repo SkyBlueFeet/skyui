@@ -5,23 +5,23 @@ import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
 export default class List extends Vue {
-    name = "v-list";
-    date = formatDate(new Date());
-    render(h: CreateElement): VNode {
-        return (
-            <div class="v-list">
-                {this.$slots.default}
-                <div class="v-list-date">
-                    <div class="v-list-date-label">当前时间：</div>
-                    <div class="v-list-date-text">{this.date}</div>
-                </div>
-            </div>
-        );
-    }
+  name = "v-list";
+  date = formatDate(new Date());
+  render(h: CreateElement): VNode {
+    return (
+      <div class="v-list">
+        {this.$slots.default}
+        <div class="v-list-date">
+          <div class="v-list-date-label">当前时间：</div>
+          <div class="v-list-date-text">{this.date}</div>
+        </div>
+      </div>
+    );
+  }
 }
 </script>
 <style lang="scss">
 .v-list {
-    color: aquamarine;
+  color: aquamarine;
 }
 </style>

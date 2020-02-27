@@ -1,17 +1,22 @@
-# Skyui Docs
+# skyui
 
-## Description
+> My impeccable Nuxt.js project
 
-skyui 构建、开发、项目文档
+## Build Setup
 
-## 技术栈
+``` bash
+# install dependencies
+$ yarn install
 
-TS、Vue、VuePress
+# serve with hot reload at localhost:3000
+$ yarn dev
 
-## 开发支持
+# build for production and launch server
+$ yarn build
+$ yarn start
 
-Eslint、Babel、PostCss、Prettier
+# generate static project
+$ yarn generate
+```
 
-## 开发日志
-
-2020-01-29 环境准备
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
