@@ -1,9 +1,8 @@
-import VList from "./components/list";
-import { VueConstructor } from "vue/types/umd";
+import "./scss/main.scss";
+import Affix from "./components/affix";
+import { VueConstructor } from "vue";
 declare const _default: {
-    install: (Vue: VueConstructor<import("vue/types/umd")>) => void;
-    VList: import("vue").VueConstructor<VList>;
-    VListItem: import("vue").VueConstructor<VList>;
-    VButton: import("vue").VueConstructor<VList>;
+  version: string;
+  install: (Vue: VueConstructor<Affix>) => void;
 };
 export default _default;

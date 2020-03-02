@@ -31,7 +31,7 @@ module.exports = {
    */
   css: [
     // "vuesax/dist/vuesax.css",
-    path.resolve(process.cwd(), "packages/scss/default.scss")
+    path.resolve(process.cwd(), "packages/scss/main.scss")
   ],
   /*
    ** Plugins to load before mounting the App
