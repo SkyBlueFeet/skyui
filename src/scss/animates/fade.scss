@@ -1,0 +1,304 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+@keyframes fadeInDownBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutDownBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes fadeInLeftBig {
+  from {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutLeftBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutRightBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fade-enter-active,
+.fadeIn,
+.fade-leave-active,
+.fadeOut {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fade-enter-active,
+.fadeIn {
+  animation-name: fadeIn;
+}
+.fade-leave-active,
+.fadeOut {
+  animation-name: fadeOut;
+}
+.fadeUpBig-enter-active,
+.fadeInUpBig,
+.fadeUpBig-leave-active,
+.fadeOutUpBig {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeUpBig-enter-active,
+.fadeInUpBig {
+  animation-name: fadeInUpBig;
+}
+.fadeUpBig-leave-active,
+.fadeOutUpBig {
+  animation-name: fadeOutUpBig;
+}
+.fadeUp-enter-active,
+.fadeInUp,
+.fadeUp-leave-active,
+.fadeOutUp {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeUp-enter-active,
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+.fadeUp-leave-active,
+.fadeOutUp {
+  animation-name: fadeOutUp;
+}
+.fadeRightBig-enter-active,
+.fadeInRightBig,
+.fadeRightBig-leave-active,
+.fadeOutRightBig {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeRightBig-enter-active,
+.fadeInRightBig {
+  animation-name: fadeInRightBig;
+}
+.fadeRightBig-leave-active,
+.fadeOutRightBig {
+  animation-name: fadeOutRightBig;
+}
+.fadeRight-enter-active,
+.fadeInRight,
+.fadeRight-leave-active,
+.fadeOutRight {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeRight-enter-active,
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+.fadeRight-leave-active,
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
+.fadeLeftBig-enter-active,
+.fadeInLeftBig,
+.fadeLeftBig-leave-active,
+.fadeOutLeftBig {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeLeftBig-enter-active,
+.fadeInLeftBig {
+  animation-name: fadeInLeftBig;
+}
+.fadeLeftBig-leave-active,
+.fadeOutLeftBig {
+  animation-name: fadeOutLeftBig;
+}
+.fadeLeft-enter-active,
+.fadeInLeft,
+.fadeLeft-leave-active,
+.fadeOutLeft {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeLeft-enter-active,
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+.fadeLeft-leave-active,
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+}
+.fadeDownBig-enter-active,
+.fadeInDownBig,
+.fadeDownBig-leave-active,
+.fadeOutDownBig {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeDownBig-enter-active,
+.fadeInDownBig {
+  animation-name: fadeInDownBig;
+}
+.fadeDownBig-leave-active,
+.fadeOutDownBig {
+  animation-name: fadeOutDownBig;
+}
+.fadeDown-enter-active,
+.fadeInDown,
+.fadeDown-leave-active,
+.fadeOutDown {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.fadeDown-enter-active,
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+.fadeDown-leave-active,
+.fadeOutDown {
+  animation-name: fadeOutDown;
+}

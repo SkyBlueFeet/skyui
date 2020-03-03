@@ -1,4 +1,4 @@
 import Vue from "vue";
-import skyui from "../../packages";
+import skyui from "@/../src/index";
 
 Vue.use(skyui);

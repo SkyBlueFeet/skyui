@@ -1,0 +1,147 @@
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+.slide-enter-active,
+.slideIn,
+.slide-leave-active,
+.slideOut {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.slide-enter-active,
+.slideIn {
+  animation-name: slideIn;
+}
+.slide-leave-active,
+.slideOut {
+  animation-name: slideOut;
+}
+.slideUp-enter-active,
+.slideInUp,
+.slideUp-leave-active,
+.slideOutUp {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.slideUp-enter-active,
+.slideInUp {
+  animation-name: slideInUp;
+}
+.slideUp-leave-active,
+.slideOutUp {
+  animation-name: slideOutUp;
+}
+.slideRight-enter-active,
+.slideInRight,
+.slideRight-leave-active,
+.slideOutRight {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.slideRight-enter-active,
+.slideInRight {
+  animation-name: slideInRight;
+}
+.slideRight-leave-active,
+.slideOutRight {
+  animation-name: slideOutRight;
+}
+.slideLeft-enter-active,
+.slideInLeft,
+.slideLeft-leave-active,
+.slideOutLeft {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.slideLeft-enter-active,
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+.slideLeft-leave-active,
+.slideOutLeft {
+  animation-name: slideOutLeft;
+}
+.slideDown-enter-active,
+.slideInDown,
+.slideDown-leave-active,
+.slideOutDown {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.slideDown-enter-active,
+.slideInDown {
+  animation-name: slideInDown;
+}
+.slideDown-leave-active,
+.slideOutDown {
+  animation-name: slideOutDown;
+}

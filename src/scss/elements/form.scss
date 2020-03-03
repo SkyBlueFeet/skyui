@@ -1,0 +1,6 @@
+@warn "The form.scss file is DEPRECATED. It has moved into its own /form folder. Please import sass/form/_all instead.";
+
+.input,
+.textarea {
+  box-shadow: none;
+}
