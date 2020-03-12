@@ -23,7 +23,14 @@
     {
       "files": ["*.js", "*.jsx"],
       "parser": "babel-eslint",
-      "extends": ["eslint:recommended", "google", "plugin:prettier/recommended"]
+      "extends": [
+        "eslint:recommended",
+        "google",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "require-jsdoc": "off"
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

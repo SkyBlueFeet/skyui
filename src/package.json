@@ -16,7 +16,8 @@
   "scripts": {
     "build:types": "rimraf types && tsc -p tsconfig.types.json",
     "build:lib": "rimraf dist && ts-node --project tsconfig.rollup.json script/build",
-    "vuese": "vuese gen"
+    "vuese": "vuese gen",
+    "gulp": "gulp --tasks"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,8 @@
     "clean-css": "^4.2.1",
     "convert-source-map": "^1.7.0",
     "csso": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
     "lodash": "^4.17.15",
     "ora": "^4.0.3",
     "postcss": "^7.0.26",

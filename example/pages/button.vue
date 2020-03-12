@@ -1,25 +1,90 @@
 <template>
   <div class="app">
     <h2>按钮</h2>
-    <a class="button is-white light">White</a>
-    <a class="button is-light">Light</a>
-    <a class="button is-dark light">Dark</a>
-    <a class="button is-black">Black</a>
-    <a class="button is-link">Link</a>
-    <br /><br />
-
-    <a class="button">Button</a>
-    <a class="button is-primary">Primary</a>
-    <a class="button is-info">Info</a>
-    <a class="button is-success">Success</a>
-    <a class="button is-warning">Warning</a>
-    <a class="button is-danger">Danger</a>
-    <br /><br />
-
-    <a class="button is-small">Small</a>
-    <a class="button">Normal</a>
-    <a class="button is-medium">Medium</a>
-    <a class="button is-large">Large</a>
+    <div class="show-box">
+      <v-button>default</v-button>
+      <v-button type="primary">primary</v-button>
+      <v-button type="info">info</v-button>
+      <v-button type="success">success</v-button>
+      <v-button type="danger">danger</v-button>
+      <v-button type="warning">warning</v-button>
+      <v-button type="text">text</v-button>
+    </div>
+    <div class="show-box">
+      <v-button outlined>outlined</v-button>
+      <v-button outlined type="primary">outlined</v-button>
+      <v-button outlined type="info">outlined</v-button>
+      <v-button outlined type="success">outlined</v-button>
+      <v-button outlined type="danger">outlined</v-button>
+      <v-button outlined type="warning">outlined</v-button>
+    </div>
+    <div class="show-box">
+      <v-button light>default</v-button>
+      <v-button light type="primary">primary</v-button>
+      <v-button light type="info">info</v-button>
+      <v-button light type="success">success</v-button>
+      <v-button light type="danger">danger</v-button>
+      <v-button light type="warning">warning</v-button>
+    </div>
+    <div class="show-box">
+      <v-button inverted>default</v-button>
+      <v-button inverted type="primary">primary</v-button>
+      <v-button inverted type="info">info</v-button>
+      <v-button inverted type="success">success</v-button>
+      <v-button inverted type="danger">danger</v-button>
+      <v-button inverted type="warning">warning</v-button>
+      <v-button inverted type="text">text</v-button>
+    </div>
+    <div class="show-box" style="background:#00d1b2">
+      <v-button inverted outlined>default</v-button>
+      <v-button inverted outlined type="primary">primary</v-button>
+      <v-button inverted outlined type="info">info</v-button>
+      <v-button inverted outlined type="success">success</v-button>
+      <v-button inverted outlined type="danger">danger</v-button>
+      <v-button inverted outlined type="warning">warning</v-button>
+      <v-button inverted outlined type="text">text</v-button>
+    </div>
+    <div class="show-box">
+      <v-button type="primary">default</v-button>
+      <v-button radius="squared" type="primary">squared</v-button>
+      <v-button radius="rounded" type="primary">rounded</v-button>
+    </div>
+    <div class="show-box">
+      <v-button size="small" type="primary">small</v-button>
+      <v-button size="normal" type="primary">normal</v-button>
+      <v-button size="medium" type="primary">medium</v-button>
+      <v-button size="large" type="primary">large</v-button>
+    </div>
+    <div class="show-box">
+      <v-button native-type="button" type="primary">button</v-button>
+      <v-button native-type="menu" type="primary">menu</v-button>
+      <v-button native-type="reset" type="primary">reset</v-button>
+      <v-button native-type="submit" type="primary">submit</v-button>
+    </div>
+    <div class="show-box">
+      <v-button blocked>Blocked</v-button>
+    </div>
+    <div class="show-box">
+      <v-button loading type="primary">
+        加载中
+      </v-button>
+      <v-button inverted type="primary">
+        inverted
+      </v-button>
+    </div>
+    <div class="show-box">
+      <v-button-group>
+        <v-button type="primary">
+          <v-icon fa="bold"></v-icon>
+        </v-button>
+        <v-button type="primary">
+          <v-icon fa="italic"></v-icon>
+        </v-button>
+        <v-button type="primary">
+          <v-icon fa="underline"></v-icon>
+        </v-button>
+      </v-button-group>
+    </div>
     <h2>固定</h2>
     <affix>
       <button class="button is-primary">固定在顶部</button>
@@ -218,7 +283,7 @@
     </div>
 
     <h2>模态框</h2>
-    <b-aside :is-show="isShow" title="Left Aside!" @close="isShow = false">
+    <v-aside :is-show="isShow" title="Left Aside!" @close="isShow = false">
       <h3>Dolor sit amet</h3>
       <p>
         Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
@@ -233,10 +298,10 @@
         aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
         a, venenatis vitae, justo.
       </p>
-    </b-aside>
+    </v-aside>
     <button @click="isShow = true" class="button is-primary">左侧模态框</button>
 
-    <b-aside
+    <v-aside
       :is-show="isShowRight"
       title="Right Aside!"
       :show-footer="false"
@@ -259,7 +324,7 @@
         a, venenatis vitae, justo.
       </p>
       <p><code>右侧Aside并且不显示footer</code></p>
-    </b-aside>
+    </v-aside>
     <button @click="isShowRight = true" class="button is-primary">
       右侧模态框
     </button>
@@ -457,6 +522,6 @@ body {
 }
 .show-box {
   width: 99%;
-  margin: 1rem 0;
+  padding: 1rem 0;
 }
 </style>

@@ -1,0 +1,38 @@
+.divider {
+  // background-color: #dcdfe6;
+  position: relative;
+  &.is-horizontal {
+    display: block;
+    border-top: $divider-border;
+    width: 100%;
+    margin: $divider-horizontal-margin;
+  }
+  &.is-vertical {
+    border-right: $divider-border;
+    display: inline-block;
+    height: 1em;
+    margin: $divider-vertical-margin;
+    vertical-align: middle;
+    position: relative;
+  }
+  .is-text {
+    position: absolute;
+    background-color: #fff;
+    padding: $divider-text-padding;
+    font-weight: 500;
+    color: $text;
+    font-size: $body-font-size;
+    &.is-left {
+      left: $divider-horizontal-text-left;
+      transform: translateY(-50%);
+    }
+    &.is-center {
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+    &.is-right {
+      right: $divider-horizontal-text-right;
+      transform: translateY(-50%);
+    }
+  }
+}

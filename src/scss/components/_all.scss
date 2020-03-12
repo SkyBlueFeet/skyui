@@ -1,5 +1,19 @@
 @charset "utf-8";
 
+@import "box";
+@import "button";
+@import "container";
+@import "content";
+@import "icon";
+@import "image";
+@import "notification";
+@import "progress";
+@import "table";
+@import "tag";
+@import "title";
+@import "other";
+
+//Components
 @import "breadcrumb";
 @import "alert";
 @import "aside";
@@ -28,3 +42,5 @@
 @import "popconfirm";
 @import "popover";
 @import "progressbar";
+@import "./divider";
+@import "./link";

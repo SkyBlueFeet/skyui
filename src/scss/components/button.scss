@@ -81,6 +81,7 @@
   &.is-hovered {
     border-color: $button-hover-border-color;
     color: $button-hover-color;
+    background-color: $button-hover-background-color;
   }
 
   &:focus,
@@ -89,7 +90,21 @@
     color: $button-focus-color;
 
     &:not(:active) {
-      box-shadow: $button-focus-box-shadow-size $button-focus-box-shadow-color;
+      @if $enable-box-shadow {
+        box-shadow: $button-focus-box-shadow-size
+          $button-focus-box-shadow-color;
+      }
+    }
+  }
+
+  &.is-inverted {
+    background-color: #fff;
+    &:hover {
+      background-color: #fff;
+      border-color: lighten($button-hover-border-color, 10%);
+    }
+    &:active {
+      background-color: darken(#fff, 1%);
     }
   }
 
@@ -104,7 +119,6 @@
     background-color: transparent;
     border-color: transparent;
     color: $button-text-color;
-    text-decoration: underline;
 
     &:hover,
     &.is-hovered,
@@ -112,12 +126,13 @@
     &.is-focused {
       background-color: $button-text-hover-background-color;
       color: $button-text-hover-color;
+      text-decoration: underline;
     }
 
     &:active,
     &.is-active {
       background-color: darken($button-text-hover-background-color, 5%);
-      color: $button-text-hover-color;
+      color: $button-text-active-color;
     }
 
     &[disabled],
@@ -150,7 +165,9 @@
         color: $color-invert;
 
         &:not(:active) {
-          box-shadow: $button-focus-box-shadow-size rgba($color, 0.25);
+          @if $enable-box-shadow {
+            box-shadow: $button-focus-box-shadow-size rgba($color, 0.25);
+          }
         }
       }
 
@@ -175,6 +192,11 @@
         &:hover,
         &.is-hovered {
           background-color: darken($color-invert, 5%);
+        }
+
+        &:active,
+        &.is-actived {
+          background-color: darken($color-invert, 3%);
         }
 
         &[disabled],
@@ -207,6 +229,11 @@
           background-color: $color;
           border-color: $color;
           color: $color-invert;
+        }
+
+        &:active,
+        &.is-actived {
+          background-color: darken($color, 2%);
         }
 
         &.is-loading {
@@ -247,6 +274,11 @@
         &.is-focused {
           background-color: $color-invert;
           color: $color;
+        }
+
+        &:active,
+        &.is-actived {
+          background-color: darken(#fff, 2%);
         }
 
         &.is-loading {
@@ -353,6 +385,9 @@
     padding-left: calc(#{$button-padding-horizontal} + 0.25em);
     padding-right: calc(#{$button-padding-horizontal} + 0.25em);
   }
+  &.is-squared {
+    border-radius: 0;
+  }
 }
 
 .buttons {
@@ -406,7 +441,8 @@
       &:not(:last-child) {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
-        margin-right: -1px;
+        margin-right: 0px;
+        border-right: $white 1px solid;
       }
 
       &:last-child {

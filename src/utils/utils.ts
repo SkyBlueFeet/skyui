@@ -1,3 +1,9 @@
+/*
+ * @Author: skybluefeet
+ * @Date: 2020-02-28 14:13:49
+ * @LastEditors: skybluefeet
+ * @LastEditTime: 2020-03-05 12:49:14
+ */
 export default {
   isEmpty(obj: any): boolean {
     if (obj === null) return true;
@@ -35,5 +41,12 @@ export default {
     }
 
     return ret;
+  },
+
+  refsToElement(node: Vue | Element | Vue[] | Element[]): HTMLElement {
+    return node as HTMLElement;
+  },
+  typeConvert<T, K>(type: T): K {
+    return type as any;
   }
 };

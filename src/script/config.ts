@@ -188,7 +188,8 @@ const rollupConfig: RollupOptions = {
     }),
     filesize(),
     postcss({
-      extract: "dist/index.css"
+      extract: "dist/index.css",
+      minimize: true
     })
   ],
   external: Object.keys($preSetExternal)

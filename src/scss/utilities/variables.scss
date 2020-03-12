@@ -1,3 +1,7 @@
+// 开关
+
+$enable-box-shadow: false !default;
+
 // Initial-variables
 
 // Colors
@@ -122,7 +126,7 @@ $pre-background: $background !default;
 
 // Link colors
 
-$link: $blue !default;
+$link: $grey-dark !default;
 $link-invert: findColorInvert($link) !default;
 $link-light: findLightColor($link) !default;
 $link-dark: findDarkColor($link) !default;
@@ -311,30 +315,37 @@ $control-padding-horizontal: calc(0.75em - #{$control-border-width}) !default;
 
 //Buttons
 
+$button-default-theme: $primary;
+
 $button-color: $text-strong !default;
 $button-background-color: $scheme-main !default;
 $button-family: false !default;
 
-$button-border-color: $border !default;
+$button-border-color: rgba($button-default-theme, 0.3) !default;
 $button-border-width: $control-border-width !default;
 
 $button-padding-vertical: calc(0.5em - #{$button-border-width}) !default;
 $button-padding-horizontal: 1em !default;
 
-$button-hover-color: $link-hover !default;
-$button-hover-border-color: $link-hover-border !default;
+$button-hover-color: $button-default-theme !default;
+$button-hover-border-color: rgba($button-default-theme, 0.3) !default;
+$button-hover-background-color: rgba($button-default-theme, 0.2) !default;
 
-$button-focus-color: $link-focus !default;
-$button-focus-border-color: $link-focus-border !default;
+$button-focus-color: $button-default-theme !default;
+$button-focus-border-color: rgba($button-default-theme, 0.3) !default;
 $button-focus-box-shadow-size: 0 0 0 0.125em !default;
-$button-focus-box-shadow-color: rgba($link, 0.25) !default;
+$button-focus-box-shadow-color: rgba($button-default-theme, 0.15) !default;
 
-$button-active-color: $link-active !default;
-$button-active-border-color: $link-active-border !default;
+$button-active-color: $button-default-theme !default;
+$button-active-border-color: darken($button-default-theme, 10%) !default;
 
-$button-text-color: $text !default;
-$button-text-hover-background-color: $background !default;
-$button-text-hover-color: $text-strong !default;
+$button-text-color: $button-default-theme !default;
+
+$button-text-hover-background-color: transparent !default;
+$button-text-hover-color: darken($button-default-theme, 20%) !default;
+
+$button-text-active-background-color: transparent !default;
+$button-text-active-color: darken($button-default-theme, 40%) !default;
 
 $button-disabled-background-color: $scheme-main !default;
 $button-disabled-border-color: $border !default;
@@ -816,3 +827,15 @@ $label-color: $text-strong !default;
 $label-weight: $weight-bold !default;
 
 $help-size: $size-small !default;
+
+//Divider
+
+$divider-border: 1px lighten($dark, 50%) solid;
+
+$divider-horizontal-margin: 2rem 0 !default;
+$divider-vertical-margin: 0 1rem !default;
+
+$divider-horizontal-text-left: 2.5rem !default;
+$divider-horizontal-text-right: 2.5rem !default;
+
+$divider-text-padding: 0 2rem !default;

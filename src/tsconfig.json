@@ -11,7 +11,7 @@
     "target": "ES5",
     "jsx": "preserve",
     "jsxFactory": "h",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "noEmit": false,
     "lib": ["ES2015", "ES2016", "ES2017", "DOM"],
     "types": ["node", "lodash"],

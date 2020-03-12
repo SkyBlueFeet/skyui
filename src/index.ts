@@ -1,3 +1,9 @@
+/*
+ * @Author: skybluefeet
+ * @Date: 2020-02-28 14:13:49
+ * @LastEditors: skybluefeet
+ * @LastEditTime: 2020-03-04 15:17:30
+ */
 /* !
  * vue-blu v0.1.9
  * (c) 2017 Chenz <chenz8606@gmail.com>
@@ -7,6 +13,11 @@
 import "./scss/main.scss";
 
 import Affix from "./packages/affix";
+import VDivider from "./packages/divider";
+import VLink from "./packages/link";
+import { VButton, VButtonGroup } from "./packages/button";
+import { VSwiper, VSlide } from "./packages/carousel";
+import VIcon from "./packages/icon";
 import Tooltip from "./packages/tooltip";
 import Popover from "./packages/popover";
 import Dropdown from "./packages/dropdown";
@@ -19,13 +30,13 @@ import { Breadcrumb, BreadcrumbItem } from "./packages/breadcrumb";
 import { Collapse, CollapseItem } from "./packages/collapse";
 import { Tabs, TabItem } from "./packages/tab";
 import { Menus, MenuItem } from "./packages/menu";
-import Aside from "./packages/aside";
+import VAside from "./packages/aside";
 import PopConfirm from "./packages/pop-confirm";
 import ScrollTo from "./packages/scroll-to";
 import { DataTable, Column, TableToolbar } from "./packages/data-table";
 import { Checkbox, CheckboxGroup } from "./packages/checkbox";
 import { Radio, RadioGroup, RadioButton } from "./packages/radio";
-import Switch from "./packages/switch";
+import VSwitch from "./packages/switch";
 import Pagination from "./packages/pagination";
 import { Steps, Step } from "./packages/steps";
 import InputNumber from "./packages/input-number";
@@ -54,7 +65,7 @@ const components = {
   TabItem,
   Menus,
   MenuItem,
-  bAside: Aside,
+  VAside,
   PopConfirm,
   ScrollTo,
   DataTable,
@@ -65,11 +76,18 @@ const components = {
   Radio,
   RadioGroup,
   RadioButton,
-  bSwitch: Switch,
+  VSwitch,
   Pagination,
   Steps,
   Step,
-  InputNumber
+  InputNumber,
+  VButton,
+  VButtonGroup,
+  VIcon,
+  VDivider,
+  VLink,
+  VSwiper,
+  VSlide
   // Datepicker
 };
 

@@ -1,0 +1,58 @@
+@function link-hover($color) {
+  @return lighten($color, 10%);
+}
+
+@function disabled-color($color) {
+  @return rgba($color, 0.6);
+}
+
+.link {
+  color: $link;
+  display: inline;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  &:not(.is-disabled):hover {
+    color: $primary;
+  }
+  &.is-underlined {
+    &:not(.is-disabled):hover {
+      border-bottom: 1px $primary solid;
+    }
+  }
+  &.is-disabled {
+    cursor: not-allowed;
+    color: rgba($link, 0.5);
+    @each $name, $pair in $colors {
+      $color: nth($pair, 1);
+      &.is-#{$name} {
+        color: disabled-color($color);
+      }
+    }
+  }
+
+  &.is-underlined {
+    @each $name, $pair in $colors {
+      $color: nth($pair, 1);
+
+      &.is-#{$name} {
+        &:hover:not(.is-underlined) {
+          border-bottom: 1px link-hover($color) solid;
+        }
+      }
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+
+    &.is-#{$name} {
+      color: $color;
+      &:not(.is-disabled):hover {
+        color: link-hover($color);
+      }
+    }
+  }
+}
