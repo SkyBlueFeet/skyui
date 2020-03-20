@@ -1,8 +1,8 @@
 <!--
  * @Author: skybluefeet
  * @Date: 2020-03-03 20:26:17
- * @LastEditors: skybluefeet
- * @LastEditTime: 2020-03-05 10:59:44
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-20 00:52:56
  -->
 <template>
   <div class="boxs">
@@ -36,15 +36,15 @@
       <v-link :underlined="false">无下划线</v-link>
     </div>
     <h2>轮播图</h2>
-    <div class="columns">
-      <div class="column is-4">
-        <v-swiper @change="test" v-if="list.length > 0">
+    <div class="row">
+      <div class="col-8">
+        <v-swiper v-if="list.length > 0">
           <v-slide v-for="(item, index) in list" :key="index">
             默认轮播{{ item }}
           </v-slide>
         </v-swiper>
       </div>
-      <div class="column is-4">
+      <div class="col-8">
         <v-swiper>
           <v-slide>
             同步加载轮播图情况 1
@@ -57,7 +57,7 @@
           </v-slide>
         </v-swiper>
       </div>
-      <div class="column is-4">
+      <div class="col-8">
         <v-swiper
           v-if="slidesReal.length > 0"
           :autoPlay="true"
@@ -75,20 +75,44 @@
         </v-swiper>
       </div>
     </div>
+    <div ref="el" style="height:600px;width:100%"></div>
+    <v-lazy>
+      <template v-for="(item, index) in fits">
+        <div :key="index" style="float:left;margin:0 10px;text-align:center">
+          <p>{{ item }}</p>
+          <v-image
+            class="img"
+            lazy
+            :fit="item"
+            src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+          ></v-image>
+        </div>
+      </template>
+    </v-lazy>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { component as VueLazyComponent } from "@xunlei/vue-lazy-component";
+import "@xunlei/vue-lazy-component/src/transition.css";
 
-@Component({})
+@Component({
+  components: {
+    "vue-lazy-component": VueLazyComponent
+  }
+})
 export default class New extends Vue {
   slidesReal = ["123", "456"];
   list = ["1", "2", "3", "4", "5"];
+  fits = ["fill", "cover", "contain", "none", "scale-down"];
   clickMe() {
     console.log("点击");
   }
   test(index) {
-    // console.log(index);
+    console.log(index);
+  }
+  mounted() {
+    // console.log(this.$refs.el["getBoundingClientRect"]());
   }
 }
 </script>
@@ -104,12 +128,16 @@ h6 {
 html,
 body {
   min-height: 1500px;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
 }
 .show-box {
   margin: 1rem 0;
 }
 .boxs {
   padding: 0 2rem;
+}
+.img {
+  width: 100px;
+  height: 100px;
 }
 </style>

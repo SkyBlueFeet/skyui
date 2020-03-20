@@ -1,34 +1,21 @@
 <!--
  * @Author: skybluefeet
  * @Date: 2020-03-04 15:12:46
- * @LastEditors: skybluefeet
- * @LastEditTime: 2020-03-04 15:31:32
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-15 16:31:58
  -->
 
 <template>
-  <div class="slide" @click="clickSlide">
+  <div class="slide" @click="handleClick">
     <slot />
   </div>
 </template>
 <script>
 export default {
   methods: {
-    clickSlide() {
+    handleClick() {
       this.$emit("click");
     }
   }
 };
 </script>
-
-<style lang="scss">
-.slide {
-  width: 100%;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  z-index: 10;
-  min-height: 100px;
-  img {
-    display: block;
-  }
-}
-</style>

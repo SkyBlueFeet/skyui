@@ -1,3 +1,9 @@
+/*
+ * @Date: 2020-03-14 17:36:24
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-15 23:11:16
+ * @repository: https://github.com/SkyBlueFeet
+ */
 const express = require("express");
 const consola = require("consola");
 const { Nuxt, Builder } = require("nuxt");

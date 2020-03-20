@@ -41,6 +41,8 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-typescript": "^3.0.0",
     "@types/lodash": "^4.14.149",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "@vue/babel-plugin-transform-vue-jsx": "^1.1.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "clean-css": "^4.2.1",
@@ -80,6 +82,11 @@
     "@popperjs/core": "^2.0.6",
     "flatpickr": "^4.6.3",
     "font-awesome": "^4.7.0",
-    "jump.js": "^1.0.2"
+    "intersection-observer": "^0.7.0",
+    "jump.js": "^1.0.2",
+    "vue": "^2.6.10",
+    "vue-lazy-component": "^0.1.5",
+    "vue-property-decorator": "^8.3.0",
+    "vue-tsx-support": "^2.3.3"
   }
 }

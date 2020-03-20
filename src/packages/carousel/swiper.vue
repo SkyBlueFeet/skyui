@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2020-03-14 17:36:24
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-15 16:47:40
+ * @repository: https://github.com/SkyBlueFeet
+ -->
 <template>
   <section class="swiper" @touchmove.prevent="preventTouch">
     <div
@@ -12,13 +18,12 @@
 
     <div v-if="indicator" class="swiper-indicator">
       <button
-        v-for="(tag, index) in slidesLength"
+        v-for="index in slidesLength"
         :key="index"
-        @mouseenter="handleButtonEnter(index)"
+        @mouseenter="handleButtonEnter(index - 1)"
         @mouseleave="handleButtonLeave()"
-        @click="handleButtonClick(index)"
-        :class="{ 'swiper-indicator-active': active == index + 1 }"
-        class="swiper-indicator-item"
+        @click="handleButtonClick(index - 1)"
+        :class="['swiper-indicator-item', { 'is-active': active == index }]"
       ></button>
     </div>
   </section>
@@ -102,7 +107,7 @@ export default class VSwiper extends Vue {
 
   beforeDestroy() {
     // 清理计时器
-    this.clearTimeOut(this.timer);
+    clearTimeout(this.timer);
   }
 
   /**
@@ -110,7 +115,7 @@ export default class VSwiper extends Vue {
    */
   touchStart(x) {
     if (this.sliding) {
-      this.clearTimeOut(this.timer);
+      clearTimeout(this.timer);
       this.touch.sx = this.handleStyle().getTransform();
       this.touch.s = x.touches[x.touches.length - 1].clientX;
     }
@@ -121,7 +126,7 @@ export default class VSwiper extends Vue {
    */
   touchMove(x) {
     if (this.sliding && this.touch.s != -1) {
-      this.clearTimeOut(this.timer);
+      clearTimeout(this.timer);
       this.touch.move = x.touches[x.touches.length - 1].clientX - this.touch.s;
       this.handleStyle(this.touch.move + this.touch.sx);
     }
@@ -132,7 +137,7 @@ export default class VSwiper extends Vue {
    */
   async touchEnd(x) {
     if (this.sliding && this.touch.s != -1) {
-      this.clearTimeOut(this.timer);
+      clearTimeout(this.timer);
       this.handleStyle(this.touch.move + this.touch.sx);
       x = this.handleStyle().getTransform();
       x += this.touch.move > 0 ? this.width * 0.3 : this.width * -0.3;
@@ -154,7 +159,7 @@ export default class VSwiper extends Vue {
 
   handleButtonEnter(buttonIndex) {
     if (this.trigger == "hover") this.swiper(buttonIndex + 1);
-    this.clearTimeOut(this.timer);
+    clearTimeout(this.timer);
   }
 
   handleButtonLeave() {
@@ -180,7 +185,7 @@ export default class VSwiper extends Vue {
   }
 
   swiper(to: number, type?: string): Promise<number> {
-    this.clearTimeOut(this.timer);
+    clearTimeout(this.timer);
     const index = (this.active = this.ensureActive(to));
 
     this.sliding = false;
@@ -263,54 +268,5 @@ export default class VSwiper extends Vue {
     this.active = buttonIndex + 1;
     return this.active;
   }
-
-  setActive($index: number): number {
-    this.active = this.ensureActive($index);
-    return this.active;
-  }
-
-  clearTimeOut(...timers: any[]) {
-    timers.forEach(i => clearTimeout(i));
-  }
 }
 </script>
-
-<style lang="scss">
-.swiper {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  width: 100%;
-  &-content {
-    width: 100%;
-    display: flex;
-    transition-duration: 0s linear;
-  }
-}
-
-.swiper-indicator {
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-  background: 0 0;
-}
-
-.swiper-indicator-item {
-  display: inline-block;
-  opacity: 0.6;
-  width: 2.5rem;
-  height: 0.2rem;
-  background-color: #ccc;
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0 0.1rem;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.swiper-indicator-active {
-  background-color: darken(#ccc, 30%);
-}
-</style>

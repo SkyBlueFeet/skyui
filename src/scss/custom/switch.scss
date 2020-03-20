@@ -1,31 +1,31 @@
-.switch-wrap{
+.switch-wrap {
   position: relative;
   display: inline-block;
   padding-left: 60px;
   min-height: 20px;
 
-  &.is-small{
+  &.is-small {
     padding-left: 48px;
-    .switchery{
+    .switchery {
       width: 40px;
       height: 18px;
-      & > small{
+      & > small {
         width: 18px;
         height: 18px;
       }
-      &.on{
-        & > small{
+      &.on {
+        & > small {
           left: 22px;
         }
       }
     }
-    .text{
+    .text {
       margin-left: 22px;
     }
   }
 }
 
-.switchery{
+.switchery {
   position: absolute;
   left: 0;
   margin-top: -2px;
@@ -35,24 +35,22 @@
   display: inline-block;
   width: 48px;
   height: 22px;
-  transition: border .4s, box-shadow .4s;
+  transition: border 0.4s, box-shadow 0.4s;
   background-color: rgb(255, 255, 255);
   border-color: rgb(233, 233, 233);
   box-shadow: rgb(233, 233, 233) 0px 0px 0px 0px inset;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
-  &.has-text{
+  &.has-text {
     width: 56px;
-    &.on{
-      & > small{
+    &.on {
+      & > small {
         left: 34px;
       }
     }
   }
 
-  .text{
+  .text {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -64,7 +62,7 @@
     margin-left: 25px;
   }
 
-  & > small{
+  & > small {
     position: absolute;
     top: 0;
     left: 0;
@@ -73,48 +71,48 @@
     border-radius: 100px;
     background-color: #fff;
     height: 22px;
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.4);
-    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
 
-  &.on{
+  &.on {
     background-color: $primary;
     border-color: $primary;
     box-shadow: $primary 0px 0px 0px 12px inset;
     transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
 
-    & > small{
+    & > small {
       left: 26px;
     }
-    .text{
+    .text {
       text-align: right;
       margin-left: 5px;
       color: #fff;
     }
   }
-  &.is-info{
-    &.on{
+  &.is-info {
+    &.on {
       background-color: $info;
       border-color: $info;
       box-shadow: $info 0px 0px 0px 12px inset;
     }
   }
-  &.is-success{
-    &.on{
+  &.is-success {
+    &.on {
       background-color: $success;
       border-color: $success;
       box-shadow: $success 0px 0px 0px 12px inset;
     }
   }
-  &.is-warning{
-    &.on{
+  &.is-warning {
+    &.on {
       background-color: $warning;
       border-color: $warning;
       box-shadow: $warning 0px 0px 0px 12px inset;
     }
   }
-  &.is-danger{
-    &.on{
+  &.is-danger {
+    &.on {
       background-color: $danger;
       border-color: $danger;
       box-shadow: $danger 0px 0px 0px 12px inset;

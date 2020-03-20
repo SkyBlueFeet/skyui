@@ -1,8 +1,8 @@
 /*
  * @Author: skybluefeet
  * @Date: 2020-02-28 14:13:49
- * @LastEditors: skybluefeet
- * @LastEditTime: 2020-03-04 15:17:30
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-19 21:48:16
  */
 /* !
  * vue-blu v0.1.9
@@ -13,6 +13,8 @@
 import "./scss/main.scss";
 
 import Affix from "./packages/affix";
+import VLazy from "./packages/lazy";
+import VImage from "./packages/image";
 import VDivider from "./packages/divider";
 import VLink from "./packages/link";
 import { VButton, VButtonGroup } from "./packages/button";
@@ -87,7 +89,9 @@ const components = {
   VDivider,
   VLink,
   VSwiper,
-  VSlide
+  VSlide,
+  VImage,
+  VLazy
   // Datepicker
 };
 

@@ -63,6 +63,7 @@ $danger: $red !default;
 
 $light: $white-ter !default;
 $dark: $grey-darker !default;
+$placeholder: $grey-lighter !default;
 
 // Invert colors
 
@@ -115,6 +116,7 @@ $text: $grey-dark !default;
 $text-invert: findColorInvert($text) !default;
 $text-light: $grey !default;
 $text-strong: $grey-darker !default;
+$text-placeholder: $placeholder !default;
 
 // Code colors
 

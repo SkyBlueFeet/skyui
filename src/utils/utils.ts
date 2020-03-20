@@ -1,8 +1,8 @@
 /*
  * @Author: skybluefeet
  * @Date: 2020-02-28 14:13:49
- * @LastEditors: skybluefeet
- * @LastEditTime: 2020-03-05 12:49:14
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-18 14:18:31
  */
 export default {
   isEmpty(obj: any): boolean {
@@ -43,10 +43,21 @@ export default {
     return ret;
   },
 
-  refsToElement(node: Vue | Element | Vue[] | Element[]): HTMLElement {
-    return node as HTMLElement;
-  },
   typeConvert<T, K>(type: T): K {
     return type as any;
+  },
+
+  filterProps(
+    props: Record<string, any>,
+    exclude: string[] = []
+  ): Record<string, any> {
+    const ensureVal = (val: string): boolean =>
+      (props[val] || props[val] === false) && !exclude.includes(val);
+
+    const $attrs: Record<string, any> = Object.create(null);
+    Object.keys(props)
+      .filter(ensureVal)
+      .forEach(k => ($attrs[k] = props[k]));
+    return $attrs;
   }
 };

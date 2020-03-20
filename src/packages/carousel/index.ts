@@ -1,8 +1,8 @@
 /*
  * @Author: skybluefeet
  * @Date: 2020-03-04 15:12:30
- * @LastEditors: skybluefeet
- * @LastEditTime: 2020-03-04 15:18:41
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-03-15 12:59:17
  */
 
 /**
@@ -10,6 +10,7 @@
  */
 
 import VSlide from "./slide.vue";
+
 import VSwiper from "./swiper.vue";
 
 export { VSlide, VSwiper };
