@@ -1,54 +1,60 @@
 /*
- * @Date: 2020-03-20 14:29:55
+ * @Date: 2020-03-20 15:07:02
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-20 14:31:15
+ * @LastEditTime: 2020-03-22 23:57:11
  * @repository: https://github.com/SkyBlueFeet
  */
-/*
- * @Date: 2020-03-19 20:19:07
- * @LastEditors: skyblue
- * @LastEditTime: 2020-03-20 11:22:28
- * @repository: https://github.com/SkyBlueFeet
- */
-// 引入polyfill，解决兼容性问题
-require("intersection-observer");
-type Option = {
-  loading?: string;
-  callback: (entry: IntersectionObserverEntry) => void;
-  observerOption?: IntersectionObserverInit;
-};
+import { Component, Vue } from "vue-property-decorator";
 
-export default class LazyLoadImage {
-  _observer: IntersectionObserver | null;
-  _loadingImage: string;
-  _callback: Option["callback"];
+export type IntersectionObserverCallback = (
+  entries: IntersectionObserverEntry[]
+) => void;
+
+export default class Observer {
+  private _instance: IntersectionObserver;
+  private _handler: IntersectionObserverCallback;
+  private _options: IntersectionObserverInit;
+
+  constructor(
+    handler: IntersectionObserverCallback,
+    options: IntersectionObserverInit
+  ) {
+    this._handler = handler;
+    this._options = options;
+    this._instance = new window.IntersectionObserver(
+      this._handler.bind(this),
+      this._options
+    );
+  }
+
+  observe(el: Element): void {
+    this._instance && this._instance.observe(el);
+  }
+
+  unobserve(el: Element): void {
+    this._instance && this._instance.unobserve(el);
+  }
+}
+
+@Component({})
+export class VueObserver extends Vue {
+  _instance: Observer;
+  _handler: IntersectionObserverCallback;
   _options: IntersectionObserverInit;
 
-  constructor(option: Option) {
-    const { callback, observerOption = {} } = option;
-
-    this._observer = null;
-    this._callback = callback;
-    this._options = observerOption;
-    this.init();
+  mounted(): void {
+    this._instance = new Observer(this._handler, this._options);
   }
 
-  init(): void {
-    try {
-      this._observer = new IntersectionObserver(entries => {
-        entries.forEach(this._callback);
-      }, this._options);
-    } catch (error) {
-      console.log(error);
-    }
+  observe(el: Element): void {
+    this._instance.observe(el);
   }
 
-  // 让每个img标签自行调用add方法，把自己添加到观察者队列中
-  add(target: Element): void {
-    this._observer && this._observer.observe(target);
+  unobserve(el: Element): void {
+    this._instance.unobserve(el);
   }
 
-  remove(target: Element): void {
-    this._observer && this._observer.unobserve(target);
+  beforeDestroy(): void {
+    if (this._instance) this.unobserve(this.$el);
   }
 }

@@ -1,24 +1,30 @@
 <!--
  * @Date: 2020-03-15 18:38:01
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-19 22:21:09
+ * @LastEditTime: 2020-03-25 17:47:58
  * @repository: https://github.com/SkyBlueFeet
  -->
 <template>
   <div class="image">
-    <template v-if="status !== 'ok'">
-      <slot v-if="status && $slots[status]" :name="status"></slot>
-      <div v-else-if="status && !$slots[status]" class="image-error">
-        {{ alt }} {{ status == "error" ? "加载错误" : "正在加载" }}
-      </div>
-    </template>
+    <transition name="fade" mode="out-in">
+      <img
+        v-if="initImage"
+        v-show="status == 'ok'"
+        key="image"
+        @load="handleLoad"
+        @error="handleError"
+        :src="dataSrc"
+        v-bind="attrs"
+        :class="['image-content', fitProp]"
+      />
 
-    <img
-      ref="imageEl"
-      v-show="status == 'ok'"
-      v-bind="attrs"
-      :class="['image-content', fitProp]"
-    />
+      <template v-else-if="showSkeleton">
+        <slot v-if="$slots.default"></slot>
+        <div key="default" class="image-error">
+          {{ alt }} {{ status == "error" ? "加载出错" : "正在加载" }}
+        </div>
+      </template>
+    </transition>
   </div>
 </template>
 <script lang="tsx">
@@ -34,8 +40,8 @@ import {
 import { CreateElement } from "vue";
 import utils from "../../utils/utils";
 import publicProp from "../../minixs/PublicPropMixin";
-import { isInView, loadImg, scrollHandler } from "./lazy";
-// import LazyLoadComponents from "vue-lazy-component/src/vue-lazy-component";
+import Observer from "../../abstract/intersection-observer";
+import VLazy from "../lazy";
 
 // Vue.use(LazyLoadComponents);
 
@@ -69,9 +75,23 @@ export default class VImage extends Mixins(publicProp) {
 
   @Prop(String) referrerPolicy: string;
 
-  @Prop([String, Number]) height: number | string;
+  @Prop({
+    type: [String, Number],
+    required: false,
+    validator(val) {
+      return !isNaN(Number(val));
+    }
+  })
+  height: number | string;
 
-  @Prop([String, Number]) width: number | string;
+  @Prop({
+    type: [String, Number],
+    required: false,
+    validator(val) {
+      return !isNaN(Number(val));
+    }
+  })
+  width: number | string;
 
   @Prop({
     type: Boolean,
@@ -87,109 +107,114 @@ export default class VImage extends Mixins(publicProp) {
 
   @Prop({
     type: String,
-    default: ""
+    default: "sync",
+    validator(val: string) {
+      let arr = ["sync", "lazy", "async"];
+      return arr.indexOf(val) !== -1;
+    }
   })
-  loadingSrc: string;
-
-  @Prop({
-    type: String,
-    default: ""
-  })
-  loadings: string;
-
-  @Ref() imageEl: HTMLImageElement;
+  loadType: string;
 
   get fitProp() {
     return this.fit ? "is-" + this.fit : "";
   }
 
   get attrs() {
-    return utils.filterProps(this.$props, ["src"]);
+    return utils.filterProps(this.$props, [
+      "src",
+      "loadType",
+      "errorSrc",
+      "fit"
+    ]);
   }
 
   status: "error" | "ok" | "loading" = "loading";
-  slot: "error" | "loading" | false;
 
   dataSrc: string = "";
 
-  error: boolean = false;
+  slotSrc: string = "";
 
-  loading: boolean = false;
+  initImage: boolean = false;
 
-  timeOut = 10000;
+  showSkeleton: boolean = true;
+
+  _instance: Observer = null;
 
   @Watch("src")
-  handleSrcChange(val) {
-    this.loadImg();
+  handleSrcChange(val: string) {
+    this.dataSrc = val;
   }
 
-  created() {
-    this.loading = true;
-  }
+  created() {}
 
   mounted() {
-    let rect = this.$el.getBoundingClientRect();
-    // console.log(this.$el.tagName, this.$el.scrollHeight, rect.y, rect.top);
-    if (this.lazy) this.handleLazy();
-    else this.handleSync();
-  }
-
-  initEvent(el: HTMLImageElement) {
-    let $this = this;
-
-    function handleError(e: Event) {
-      let _this: HTMLImageElement = this;
-      $this.status = "error";
-      $this.$emit("error", e);
+    if (this.loadType == "lazy" || this.lazy) {
+      this.handleLazy();
+    } else if (this.loadType == "async") {
+      this.handleAsync();
+    } else {
+      this.handleSync();
     }
-
-    function handleLoad(e: Event) {
-      $this.status = "ok";
-      $this.$emit("load", e);
-    }
-
-    el.addEventListener("load", handleLoad);
-
-    el.addEventListener("error", handleError, { once: true });
   }
 
   handleSync() {
-    this.initEvent(this.imageEl);
-    this.loadImg();
+    this.dataSrc = this.src;
+    this.initImage = true;
   }
 
-  loadImg(): void {
-    this.imageEl.src = this.src;
+  handleAsync(callback?: (string) => void) {
+    let image = new Image(Number(this.width), Number(this.height));
+    image.src = this.src;
+
+    new Promise<string>((resolve, reject) => {
+      image.addEventListener("load", (e: Event) => {
+        this.handleLoad(e);
+        resolve(this.src);
+      });
+
+      image.addEventListener(
+        "error",
+        (e: Event) => {
+          this.handleError(e);
+          reject(this.errorSrc);
+        },
+        { once: true }
+      );
+    })
+      .then(res => {
+        if (typeof callback === "function") callback("ok");
+        this.initImage = true;
+      })
+      .catch(errorSrc => {
+        if (typeof callback === "function") callback("error");
+        this.initImage = false;
+      });
   }
 
-  handleScroll(e) {
-    console.log(e);
+  handleEntries(entries: IntersectionObserverEntry[]): void {
+    const thisEntry = entries[0];
+    if (thisEntry.isIntersecting || thisEntry.intersectionRatio) {
+      this.handleAsync(status => {
+        this._instance.unobserve(this.$el);
+      });
+    }
   }
 
   handleLazy() {
-    const imageEl: HTMLImageElement = this.imageEl;
-    const $el = utils.typeConvert<Element, HTMLElement>(this.$el);
+    this._instance = new Observer(this.handleEntries.bind(this), {});
+    this._instance.observe(this.$el);
+  }
 
-    const $this = this;
+  handleLoad(e) {
+    this.status = "ok";
+    this.dataSrc = this.src;
+    this.$emit("load", e);
+  }
 
-    const isInView = (el: HTMLElement): boolean => {
-      const rect = el.getBoundingClientRect();
-      const clientHight = window.innerHeight;
-      return rect.y <= 10 || rect.y < clientHight;
-    };
-
-    console.log(isInView($el));
-
-    if (isInView($el)) $this.loadImg();
-
-    $this.initEvent(this.imageEl);
-
-    window.addEventListener("scroll", e => {
-      if (isInView($el) && $this.status == "loading") {
-        let rect = $el.getBoundingClientRect();
-        $this.loadImg.call($this);
-      }
-    });
+  handleError(e) {
+    this.status = "error";
+    this.errorSrc ? (this.dataSrc = this.errorSrc) : (this.status = "error");
+    this.$emit("error", e);
   }
 }
 </script>

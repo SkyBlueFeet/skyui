@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-02-28 14:13:49
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-19 21:48:16
+ * @LastEditTime: 2020-03-22 22:23:48
  */
 /* !
  * vue-blu v0.1.9
@@ -42,6 +42,7 @@ import VSwitch from "./packages/switch";
 import Pagination from "./packages/pagination";
 import { Steps, Step } from "./packages/steps";
 import InputNumber from "./packages/input-number";
+import VLazyDirective from "./directives/img-lazy";
 // import Datepicker from "./components/datepicker";
 
 import Notify from "./packages/notify";
@@ -103,6 +104,7 @@ const install = function(Vue: VueConstructor): void {
 
   Vue.prototype.$notify = Notify;
   Vue.prototype.$modal = MessageModal;
+  Vue.directive("lazy", VLazyDirective);
 };
 
 if (typeof window !== "undefined" && window.Vue) {

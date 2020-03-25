@@ -9,8 +9,7 @@
   vertical-align: middle;
   position: relative;
   margin: 0 auto;
-
-  &-content {
+  & &-content {
     @include fill;
     vertical-align: middle;
     &.is-fill {
@@ -34,7 +33,7 @@
     }
   }
 
-  &-error {
+  & &-error {
     @include fill;
     background-color: $placeholder;
     display: flex;

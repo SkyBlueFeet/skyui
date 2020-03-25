@@ -1,7 +1,7 @@
 <template>
   <transition-group
     :tag="tagName"
-    name="lazy-component"
+    :name="transition"
     style="position: relative;"
     @before-enter="handleBeforeEntry"
     @before-leave="handleBeforeLeave"
@@ -20,12 +20,11 @@
 
 <script lang="ts">
 import "intersection-observer";
-import { Component, Prop, Vue } from "vue-property-decorator";
-import Observer from "./test";
+import { Component, Prop, Vue, Mixins } from "vue-property-decorator";
+import { VueObserver } from "../../abstract/intersection-observer";
 
 if (typeof window !== "undefined") {
   window["_lazyObserver"] = null;
-  console.log(IntersectionObserver);
 }
 
 type IntersectionObserverCallback = (
@@ -33,7 +32,7 @@ type IntersectionObserverCallback = (
 ) => void;
 
 @Component({})
-export default class VLazy extends Vue {
+export default class VLazy extends Mixins(VueObserver) {
   @Prop(Number) timeout;
   @Prop({
     type: String,
@@ -65,32 +64,45 @@ export default class VLazy extends Vue {
   })
   maxWaitingTime: string;
 
+  @Prop({
+    type: String,
+    default: "fade"
+  })
+  transition: string;
+
   isInit = false;
   timer = null;
-  io: IntersectionObserver = null;
+  status: "loading" | "error" | "ok" = "loading";
   loading = false;
 
   created() {
     // 如果指定timeout则无论可见与否都是在timeout之后初始化
+
     if (this.timeout) {
       this.timer = setTimeout(() => {
         this.init();
       }, this.timeout);
     }
+
+    this._handler = this.handleEntry();
+    const { rootMargin, viewport = null } = this;
+    this._options = {
+      rootMargin,
+      root: viewport,
+      threshold: [0, Number.MIN_VALUE, 0.01]
+    };
+  }
+
+  get rootMargin() {
+    return this.direction == "vertical" // 根据滚动方向来构造视口外边距，用于提前加载
+      ? `${this.threshold} 0px`
+      : `0px ${this.threshold}`;
   }
 
   mounted() {
     const _this = this;
     if (!_this.timeout) {
-      // 根据滚动方向来构造视口外边距，用于提前加载
-      let rootMargin =
-        _this.direction == "vertical"
-          ? `${_this.threshold} 0px`
-          : `0px ${_this.threshold}`;
-
-      // 观察视口与组件容器的交叉情况
-      _this.io = _this.instance(_this.handleEntry());
-      _this.io.observe(_this.$el);
+      _this.observe(_this.$el);
     }
   }
 
@@ -120,7 +132,11 @@ export default class VLazy extends Vue {
         entries[0].intersectionRatio
       ) {
         _this.init();
-        _this.io.unobserve(_this.$el);
+        Vue.nextTick().then(res => {
+          _this.$emit("inited", _this.$el);
+          _this.status = "ok";
+          _this.unobserve(_this.$el);
+        });
       }
     };
   }
@@ -129,25 +145,15 @@ export default class VLazy extends Vue {
   init() {
     // 此时说明骨架组件即将被切换
 
-    this.$emit("before-init");
-
     // 此时可以准备加载懒加载组件的资源
     this.loading = true;
+    this.status = "loading";
 
     // 由于函数会在主线程中执行，加载懒加载组件非常耗时，容易卡顿
     // 所以在requestAnimationFrame回调中延后执行
     this.requestAnimationFrame(() => {
       this.isInit = true;
-      this.$emit("init");
-    });
-  }
-
-  instance(handler: IntersectionObserverCallback): IntersectionObserver {
-    const _this = this;
-    return new window.IntersectionObserver(handler, {
-      rootMargin: "0px",
-      root: _this.viewport,
-      threshold: [0, Number.MIN_VALUE, 0.01]
+      this.$emit("before-init");
     });
   }
 
@@ -169,9 +175,7 @@ export default class VLazy extends Vue {
 
   beforeDestroy() {
     // 在组件销毁前取消观察
-    if (this.io) {
-      this.io.unobserve(this.$el);
-    }
+    this._instance && this.unobserve(this.$el);
   }
 }
 </script>

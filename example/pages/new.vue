@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-03-03 20:26:17
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-20 00:52:56
+ * @LastEditTime: 2020-03-25 00:36:41
  -->
 <template>
   <div class="boxs">
@@ -76,29 +76,27 @@
       </div>
     </div>
     <div ref="el" style="height:600px;width:100%"></div>
-    <v-lazy>
-      <template v-for="(item, index) in fits">
-        <div :key="index" style="float:left;margin:0 10px;text-align:center">
-          <p>{{ item }}</p>
-          <v-image
-            class="img"
-            lazy
-            :fit="item"
-            src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-          ></v-image>
-        </div>
-      </template>
-    </v-lazy>
+    <template v-for="(item, index) in fits">
+      <div :key="index" style="float:left;margin:0 10px;text-align:center">
+        <p>{{ item }}</p>
+        <v-image
+          load-type="lazy"
+          class="img"
+          :fit="item"
+          src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+        >
+        </v-image>
+      </div>
+    </template>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { component as VueLazyComponent } from "@xunlei/vue-lazy-component";
-import "@xunlei/vue-lazy-component/src/transition.css";
 
 @Component({
   components: {
-    "vue-lazy-component": VueLazyComponent
+    // "vue-lazy-component": VueLazyComponent
   }
 })
 export default class New extends Vue {
@@ -109,7 +107,8 @@ export default class New extends Vue {
     console.log("点击");
   }
   test(index) {
-    console.log(index);
+    // console.log(index);
+    console.log("test");
   }
   mounted() {
     // console.log(this.$refs.el["getBoundingClientRect"]());

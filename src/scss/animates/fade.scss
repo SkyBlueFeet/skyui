@@ -171,6 +171,7 @@
 .fadeIn,
 .fade-leave-active,
 .fadeOut {
+  animation-delay: 0.2s;
   animation-duration: $transition-speed;
   animation-fill-mode: both;
 }
