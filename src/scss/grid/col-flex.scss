@@ -1,0 +1,57 @@
+.grid-flex {
+  & > [class^="cell"],
+  & > [class*="cell"] {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  & > .flex-align-top {
+    align-self: flex-start;
+  }
+
+  & > .flex-align-center {
+    align-self: center;
+  }
+
+  & > .flex-align-bottom {
+    align-self: flex-end;
+  }
+
+  & > .flex-align-baseline {
+    align-self: baseline;
+  }
+
+  & > .flex-align-stretch {
+    align-self: stretch;
+  }
+
+  // cell-auto
+  & > .cell-auto {
+    flex: 1;
+  }
+  @for $i from 1 through 24 {
+    $width: percentage($i/ 24);
+
+    & > .cell-#{$i} {
+      flex: none;
+      width: $width;
+    }
+  }
+
+  @for $i from 1 through 9 {
+    & > .cell-flex-#{$i} {
+      flex: $i;
+    }
+  }
+
+  & > .cell-flex-none {
+    flex: none;
+  }
+
+  & > .cell-flex-initial {
+    flex: initial;
+  }
+  & > .cell-flex-auto {
+    flex: auto;
+  }
+}

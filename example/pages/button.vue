@@ -163,9 +163,12 @@
       </nav>
     </div>
     <h2>菜单</h2>
-    <div style="width:50%">
-      <div class="columns" style="margin-top: 20px; background-color: #f0f0f0;">
-        <div class="column is-3">
+    <div>
+      <div class="grid-flex flex-align-center">
+        <div
+          class="cell-3"
+          style="margin-top: 20px; background-color: #f0f0f0;"
+        >
           <div class="menu">
             <menus label="Administration">
               <menu-item icon="twitter">
@@ -205,7 +208,13 @@
             </menus>
           </div>
         </div>
+        <v-cell-auto>123</v-cell-auto>
       </div>
+      <v-grid type="float">
+        <v-cell col="7">123</v-cell>
+        <v-cell col="8">789</v-cell>
+        <v-cell col="9">256</v-cell>
+      </v-grid>
     </div>
     <h2>步骤条Steps</h2>
     <div class="show-box">
@@ -234,36 +243,35 @@
     </div>
     <h2>Tabs</h2>
     <div class="show-box">
-      <div class="columns">
-        <div class="column">
-          <tabs>
-            <tab-item label="Pictures">Pictures Tab</tab-item>
-            <tab-item label="Music">Music Tab</tab-item>
-            <tab-item label="Videos">Video Tab</tab-item>
-            <tab-item label="Documents">Document Tab2</tab-item>
-          </tabs>
-        </div>
-
-        <div class="column">
+      <v-grid>
+        <v-cell-auto>
           <tabs type="boxed">
             <tab-item label="Pictures">Pictures Tab</tab-item>
             <tab-item label="Music">Music Tab</tab-item>
             <tab-item label="Videos">Video Tab</tab-item>
             <tab-item label="Documents">Document Tab2</tab-item>
           </tabs>
-        </div>
-      </div>
+        </v-cell-auto>
+        <v-cell-auto>
+          <tabs>
+            <tab-item label="Pictures">Pictures Tab</tab-item>
+            <tab-item label="Music">Music Tab</tab-item>
+            <tab-item label="Videos">Video Tab</tab-item>
+            <tab-item label="Documents">Document Tab2</tab-item>
+          </tabs>
+        </v-cell-auto>
+      </v-grid>
 
-      <div class="columns">
-        <div class="column">
+      <v-grid>
+        <v-cell-auto>
           <tabs type="toggle">
             <tab-item label="Pictures">Pictures Tab</tab-item>
             <tab-item label="Music">Music Tab</tab-item>
             <tab-item label="Videos">Video Tab</tab-item>
             <tab-item label="Documents">Document Tab2</tab-item>
           </tabs>
-        </div>
-        <div class="column">
+        </v-cell-auto>
+        <v-cell-auto>
           <tabs type="toggle" :is-full-width="true">
             <tab-item label="Pictures" icon="image">Pictures Tab</tab-item>
             <tab-item label="Music" icon="music">Music Tab</tab-item>
@@ -272,8 +280,8 @@
               >Document Tab2</tab-item
             >
           </tabs>
-        </div>
-      </div>
+        </v-cell-auto>
+      </v-grid>
     </div>
     <h2>Alert</h2>
     <div class="show-box">

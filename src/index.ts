@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-02-28 14:13:49
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-22 22:23:48
+ * @LastEditTime: 2020-03-26 12:59:41
  */
 /* !
  * vue-blu v0.1.9
@@ -18,6 +18,7 @@ import VImage from "./packages/image";
 import VDivider from "./packages/divider";
 import VLink from "./packages/link";
 import { VButton, VButtonGroup } from "./packages/button";
+import { VCell, VCellAuto, VGrid } from "./packages/grid";
 import { VSwiper, VSlide } from "./packages/carousel";
 import VIcon from "./packages/icon";
 import Tooltip from "./packages/tooltip";
@@ -92,7 +93,10 @@ const components = {
   VSwiper,
   VSlide,
   VImage,
-  VLazy
+  VLazy,
+  VCell,
+  VGrid,
+  VCellAuto
   // Datepicker
 };
 

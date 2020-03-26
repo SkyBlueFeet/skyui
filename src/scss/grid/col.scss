@@ -1,0 +1,27 @@
+.grid-flex,
+.grid-float {
+  @for $i from 1 through 24 {
+    $width: percentage($i/ 24);
+
+    & > .cell-offset-#{$i} {
+      margin-left: $width;
+    }
+    & > .cell-pull-#{$i} {
+      position: relative;
+      right: $width;
+    }
+    & > .cell-push-#{$i} {
+      position: relative;
+      left: $width;
+    }
+  }
+
+  @for $i from 0 through 5 {
+    $padding: $i * 0.5em;
+    & > .cell-gutter-#{$i},
+    &.cell-gutter-#{$i} > [class^="cell"],
+    &.cell-gutter-#{$i} > [class*="cell"] {
+      padding: 0 $padding;
+    }
+  }
+}
