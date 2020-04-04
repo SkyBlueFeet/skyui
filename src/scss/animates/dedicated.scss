@@ -1,0 +1,79 @@
+@keyframes navSlideIn {
+  from {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes navSlideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+}
+
+// @include from($desktop) {
+//   @keyframes navSlideIn {
+//     from {
+//       transform: translateY(10%);
+//       opacity: 0;
+//     }
+//     to {
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//   }
+
+//   @keyframes navSlideOut {
+//     from {
+//       transform: translateY(0);
+//       opacity: 1;
+//     }
+//     to {
+//       transform: translateY(10%);
+//       opacity: 0;
+//     }
+//   }
+// }
+
+@include until($tablet) {
+  @keyframes navSlideIn {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100%;
+    }
+  }
+
+  @keyframes navSlideOut {
+    from {
+      height: 100%;
+    }
+    to {
+      height: 0%;
+    }
+  }
+}
+
+.nav-slide-enter-active,
+.nav-slide-leave-active {
+  animation-duration: $transition-speed;
+  animation-fill-mode: both;
+}
+.nav-slide-enter-active {
+  animation-timing-function: ease;
+  animation-name: navSlideIn;
+}
+.nav-slide-leave-active {
+  animation-timing-function: ease-out;
+  animation-name: navSlideOut;
+}

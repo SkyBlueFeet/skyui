@@ -17,16 +17,14 @@
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
 
   "globals": {
-    "_": true
+    "_": true,
+    "h": true
   },
   "overrides": [
     {
       "files": ["*.js", "*.jsx"],
       "parser": "babel-eslint",
-      "extends": [
-        "eslint:recommended",
-        "plugin:prettier/recommended"
-      ],
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
       "rules": {
         "require-jsdoc": 0,
         "no-invalid-this": 0

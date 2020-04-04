@@ -512,6 +512,9 @@ export default class TestPage extends Vue {
   loadingNotify() {
     this["$notify"].open({ content: "命令执行中...", type: "loading" });
   }
+  test() {
+    console.log("test");
+  }
 }
 </script>
 <style>

@@ -1,15 +1,18 @@
 <!--
  * @Date: 2020-03-26 02:16:07
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-26 17:47:45
+ * @LastEditTime: 2020-03-26 20:36:50
  * @repository: https://github.com/SkyBlueFeet
  -->
-<script lang="ts">
+
+<script lang="tsx">
 import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import { CreateElement } from "vue";
 import Cell from "./cell-mixins";
 
-@Component({})
+@Component({
+  inheritAttrs: true
+})
 export default class VCellAuto extends Mixins(Cell) {
   @Prop({
     type: [Number, String],
@@ -26,14 +29,15 @@ export default class VCellAuto extends Mixins(Cell) {
   flex: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | "auto" | "initial" | "none";
 
   render(h: CreateElement) {
-    const { flex, tag, $slots, commonClass, click } = this;
-    const className = [flex ? "cell-flex-" + flex : "cell-auto", ...commonClass]
-      .filter(v => v)
-      .join(" ");
+    const { flex, commonClass, click } = this;
+    const className = [
+      flex ? "cell-flex-" + flex : "cell-auto",
+      ...commonClass
+    ].filter(v => v);
     return h(
-      tag,
-      { attrs: { class: className }, on: { click } },
-      $slots.default
+      this.tag,
+      { class: className, on: { click } },
+      this.$slots.default
     );
   }
 }

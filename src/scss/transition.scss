@@ -1,0 +1,18 @@
+/*!
+ * vue2-animate v1.0.4
+ * (c) 2016 Simon Asika
+ * Released under the MIT License.
+ * Documentation: https://github.com/asika32764/vue2-animate
+ */
+
+@charset "UTF-8";
+
+$transition-speed: 0.2s !default;
+
+@import "./animates/zoom";
+@import "./animates/bounce";
+@import "./animates/fade";
+@import "./animates/rotate";
+@import "./animates/slide";
+@import "./animates/dedicated";
+@import "./animates/transtion";

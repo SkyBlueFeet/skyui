@@ -1,10 +1,10 @@
 <!--
  * @Date: 2020-03-26 01:03:32
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-26 16:43:35
+ * @LastEditTime: 2020-04-02 16:32:18
  * @repository: https://github.com/SkyBlueFeet
  -->
-<script lang="ts">
+<script lang="tsx">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { CreateElement } from "vue";
 
@@ -12,7 +12,7 @@ import { CreateElement } from "vue";
 export default class VGrid extends Vue {
   @Prop({
     type: [Number, String],
-    default: 3,
+    default: 0,
     validator(val) {
       return !isNaN(Number(val));
     }
@@ -66,15 +66,9 @@ export default class VGrid extends Vue {
     const className = [
       "grid-" + type,
       ...flexClass,
-      gutter ? "cell-gutter-" + gutter : ""
-    ]
-      .filter(v => v)
-      .join(" ");
-    return h(
-      this.tag,
-      { attrs: { class: className }, on: {} },
-      this.$slots.default
-    );
+      Number(gutter) ? "cell-gutter-" + gutter : ""
+    ].filter(v => v);
+    return h(this.tag, { class: className, on: {} }, this.$slots.default);
   }
 }
 </script>

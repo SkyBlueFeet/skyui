@@ -10,7 +10,7 @@ $black: hsl(0, 0%, 4%) !default;
 $black-bis: hsl(0, 0%, 7%) !default;
 $black-ter: hsl(0, 0%, 14%) !default;
 
-$grey-darker: hsl(0, 0%, 21%) !default;
+$grey-darker: hsl(210, 8.7%, 36.1%) !default;
 $grey-dark: hsl(0, 0%, 29%) !default;
 $grey: hsl(0, 0%, 48%) !default;
 $grey-light: hsl(0, 0%, 71%) !default;
@@ -241,6 +241,8 @@ $block-spacing: 1.5rem !default;
 $gap: 32px !default;
 
 // 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$mobile: 576px !default;
+
 $tablet: 769px !default;
 
 // 960px container + 4rem
@@ -634,7 +636,7 @@ $modal-card-body-padding: 20px !default;
 $navbar-background-color: $scheme-main !default;
 $navbar-box-shadow-size: 0 2px 0 0 !default;
 $navbar-box-shadow-color: $background !default;
-$navbar-height: 3.25rem !default;
+$navbar-height: 4rem !default;
 $navbar-padding-vertical: 1rem !default;
 $navbar-padding-horizontal: 2rem !default;
 $navbar-z: 30 !default;
@@ -676,7 +678,7 @@ $navbar-dropdown-item-active-background-color: $background !default;
 $navbar-divider-background-color: $background !default;
 $navbar-divider-height: 2px !default;
 
-$navbar-bottom-box-shadow-size: 0 -2px 0 0 !default;
+$navbar-bottom-box-shadow-size: 0 1px 0 0 !default;
 
 $navbar-breakpoint: $desktop !default;
 

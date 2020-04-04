@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-03-03 20:26:17
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-25 00:36:41
+ * @LastEditTime: 2020-04-04 15:35:52
  -->
 <template>
   <div class="boxs">
@@ -36,15 +36,15 @@
       <v-link :underlined="false">无下划线</v-link>
     </div>
     <h2>轮播图</h2>
-    <div class="row">
-      <div class="col-8">
+    <v-grid>
+      <v-cell-auto>
         <v-swiper v-if="list.length > 0">
           <v-slide v-for="(item, index) in list" :key="index">
             默认轮播{{ item }}
           </v-slide>
         </v-swiper>
-      </div>
-      <div class="col-8">
+      </v-cell-auto>
+      <v-cell-auto>
         <v-swiper>
           <v-slide>
             同步加载轮播图情况 1
@@ -56,8 +56,8 @@
             同步加载轮播图情况 3
           </v-slide>
         </v-swiper>
-      </div>
-      <div class="col-8">
+      </v-cell-auto>
+      <v-cell-auto>
         <v-swiper
           v-if="slidesReal.length > 0"
           :autoPlay="true"
@@ -73,26 +73,56 @@
             加一些参数配置 添加click事件 {{ index }}
           </v-slide>
         </v-swiper>
-      </div>
-    </div>
-    <div ref="el" style="height:600px;width:100%"></div>
-    <template v-for="(item, index) in fits">
-      <div :key="index" style="float:left;margin:0 10px;text-align:center">
-        <p>{{ item }}</p>
-        <v-image
-          load-type="lazy"
-          class="img"
-          :fit="item"
-          src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-        >
-        </v-image>
-      </div>
-    </template>
+      </v-cell-auto>
+    </v-grid>
+    <v-grid>
+      <v-cell-auto>
+        <h2>图片Image</h2>
+        <template v-for="(item, index) in fits">
+          <div :key="index" style="float:left;margin:0 10px;text-align:center">
+            <p>{{ item }}</p>
+            <v-image
+              load-type="lazy"
+              class="img"
+              :fit="item"
+              src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+            >
+            </v-image>
+          </div>
+        </template>
+      </v-cell-auto>
+    </v-grid>
+    <v-grid>
+      <v-grid>
+        <v-cell-auto>
+          <h2>自定义导航</h2>
+        </v-cell-auto>
+      </v-grid>
+      <v-grid gutter="0">
+        <v-cell-auto gutter="0">
+          <v-navbar>
+            brand
+          </v-navbar>
+        </v-cell-auto>
+      </v-grid>
+      <v-grid>
+        <v-cell-auto>
+          <button @click="testCollose = !testCollose">
+            {{ testCollose ? "显示" : "隐藏" }}
+          </button>
+          <v-collapse-transition>
+            <h1 v-if="testCollose">12305</h1>
+          </v-collapse-transition>
+        </v-cell-auto>
+      </v-grid>
+    </v-grid>
+    <v-grid>
+      <v-cell-auto><h2>new</h2></v-cell-auto>
+    </v-grid>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { component as VueLazyComponent } from "@xunlei/vue-lazy-component";
 
 @Component({
   components: {
@@ -100,9 +130,12 @@ import { component as VueLazyComponent } from "@xunlei/vue-lazy-component";
   }
 })
 export default class New extends Vue {
+  defaultActive = 1;
   slidesReal = ["123", "456"];
   list = ["1", "2", "3", "4", "5"];
   fits = ["fill", "cover", "contain", "none", "scale-down"];
+  active = 1;
+  testCollose = false;
   clickMe() {
     console.log("点击");
   }

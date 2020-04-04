@@ -6,11 +6,11 @@
 .image {
   text-align: center;
   display: inline-block;
-  vertical-align: middle;
+  // vertical-align: middle;
   position: relative;
   margin: 0 auto;
   & &-content {
-    @include fill;
+    @include fill();
     vertical-align: middle;
     &.is-fill {
       object-fit: fill;
