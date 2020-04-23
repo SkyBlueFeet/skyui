@@ -6,28 +6,27 @@
     "jsx": "preserve",
     "jsxFactory": "h",
     "removeComments": true,
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "module": "ESNext",
     "target": "es5",
     "alwaysStrict": true,
+    "importHelpers": true,
     "incremental": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "outDir": "./dist",
+    "baseUrl": "./",
     "paths": {
-      "@packages/*": ["src/packages/*"],
-      "@directives/*": ["src/directives/"],
-      "@minixs/*": ["src/minixs/"],
-      "@plugins/*": ["src/plugins/"],
-      "@utils/*": ["src/utils/"],
-      "@declare/*": ["src/declare/*"]
+      "@example/*": ["example/*"],
+      "@root/*": ["/*"],
+      "@declare/*": ["declare/*"]
     },
     "noEmit": false,
     "lib": ["ES2015", "DOM", "ES2016", "ES2017"],
-    "types": ["node", "vue"]
+    "types": ["node"]
   },
-  "include": ["example", "docs", "declare"]
+  "exclude": ["node_modules", "dist", ".*", "config"]
 }

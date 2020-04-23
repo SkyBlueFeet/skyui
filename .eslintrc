@@ -23,10 +23,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "parser": "babel-eslint",
-      "extends": [
-        "eslint:recommended",
-        "plugin:prettier/recommended"
-      ],
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
       "rules": {
         "require-jsdoc": 0,
         "no-invalid-this": 0
@@ -65,5 +62,5 @@
       }
     }
   ],
-  "plugins": ["react", "vue", "html"]
+  "plugins": ["vue", "html"]
 }

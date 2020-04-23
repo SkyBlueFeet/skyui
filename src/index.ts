@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-02-28 14:13:49
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-26 12:59:41
+ * @LastEditTime: 2020-04-07 01:26:09
  */
 /* !
  * vue-blu v0.1.9
@@ -13,6 +13,15 @@
 import "./scss/main.scss";
 
 import Affix from "./packages/affix";
+import {
+  VNavbar,
+  VNavbarBrand,
+  VNavbarItem,
+  VNavbarDivider,
+  VNavbarDropdown,
+  VNavbarMenu,
+  VNavbarLink
+} from "./packages/navbar";
 import VLazy from "./packages/lazy";
 import VImage from "./packages/image";
 import VDivider from "./packages/divider";
@@ -44,6 +53,7 @@ import Pagination from "./packages/pagination";
 import { Steps, Step } from "./packages/steps";
 import InputNumber from "./packages/input-number";
 import VLazyDirective from "./directives/img-lazy";
+import VCollapseTransition from "./transitions/collapse";
 // import Datepicker from "./components/datepicker";
 
 import Notify from "./packages/notify";
@@ -96,7 +106,15 @@ const components = {
   VLazy,
   VCell,
   VGrid,
-  VCellAuto
+  VCellAuto,
+  VNavbar,
+  VCollapseTransition,
+  VNavbarBrand,
+  VNavbarItem,
+  VNavbarDivider,
+  VNavbarDropdown,
+  VNavbarMenu,
+  VNavbarLink
   // Datepicker
 };
 
@@ -117,5 +135,6 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export default {
   version: "0.1.1",
-  install
+  install,
+  ...components
 };

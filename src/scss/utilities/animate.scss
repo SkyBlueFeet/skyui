@@ -7,10 +7,11 @@
 
 @charset "UTF-8";
 
-$transition-speed: 0.3s !default;
+$transition-speed: 0.2s !default;
 
 @import "./animates/zoom";
 @import "./animates/bounce";
 @import "./animates/fade";
 @import "./animates/rotate";
 @import "./animates/slide";
+@import "./animates/dedicated";

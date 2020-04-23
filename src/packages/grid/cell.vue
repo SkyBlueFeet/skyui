@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-03-26 02:07:07
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-26 17:46:39
+ * @LastEditTime: 2020-03-26 20:39:59
  * @repository: https://github.com/SkyBlueFeet
  -->
 <script lang="ts">
@@ -23,13 +23,9 @@ export default class VCell extends Mixins(Cell, PublicProp) {
 
   render(h: CreateElement) {
     const { tag, $slots, col, commonClass, click } = this;
-    const className = ["cell-" + col, ...commonClass].filter(v => v).join(" ");
+    const className = ["cell-" + col, ...commonClass].filter(v => v);
 
-    return h(
-      tag,
-      { attrs: { class: className }, on: { click } },
-      $slots.default
-    );
+    return h(tag, { class: className, on: { click } }, $slots.default);
   }
 }
 </script>

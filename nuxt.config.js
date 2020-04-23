@@ -1,3 +1,9 @@
+/*
+ * @Date: 2020-03-14 17:36:24
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-04-02 20:17:05
+ * @repository: https://github.com/SkyBlueFeet
+ */
 const path = require("path");
 
 module.exports = {
@@ -32,6 +38,7 @@ module.exports = {
   css: [
     // "vuesax/dist/vuesax.css",
     path.resolve(process.cwd(), "src/scss/main.scss")
+    // "element-ui/lib/theme-chalk/index.css"
   ],
   /*
    ** Plugins to load before mounting the App

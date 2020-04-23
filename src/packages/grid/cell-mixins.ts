@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-03-26 15:06:04
  * @LastEditors: skyblue
- * @LastEditTime: 2020-03-26 15:58:56
+ * @LastEditTime: 2020-04-02 16:28:11
  * @repository: https://github.com/SkyBlueFeet
  */
 import { Vue, Component, Prop } from "vue-property-decorator";
@@ -64,10 +64,10 @@ export default class Cell extends Vue {
     const { gutter, pull, push, align, offset } = this;
     return [
       align ? "flex-align-" + align : "",
-      gutter ? "cell-gutter-" + gutter : "",
-      offset ? "cell-offset-" + offset : "",
-      pull ? "cell-pull-" + pull : "",
-      push ? "cell-push-" + push : ""
+      Number(gutter) ? "cell-gutter-" + gutter : "",
+      Number(offset) ? "cell-offset-" + offset : "",
+      Number(pull) ? "cell-pull-" + pull : "",
+      Number(push) ? "cell-push-" + push : ""
     ];
   }
 

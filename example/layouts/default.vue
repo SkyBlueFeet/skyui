@@ -1,5 +1,11 @@
+<!--
+ * @Date: 2020-03-14 17:36:24
+ * @LastEditors: skyblue
+ * @LastEditTime: 2020-04-05 10:18:47
+ * @repository: https://github.com/SkyBlueFeet
+ -->
 <template>
-  <div>
+  <div id="app">
     <nuxt />
   </div>
 </template>

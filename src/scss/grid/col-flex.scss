@@ -41,6 +41,13 @@
   @for $i from 1 through 9 {
     & > .cell-flex-#{$i} {
       flex: $i;
+
+      @for $j from 0 through 5 {
+        $padding: $j * 0.5em;
+        &.cell-gutter-#{$j} {
+          padding: 0 $padding;
+        }
+      }
     }
   }
 
