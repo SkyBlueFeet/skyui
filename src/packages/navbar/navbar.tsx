@@ -38,6 +38,8 @@ export default class VNavbar extends Vue {
       return themes.indexOf(val) !== -1;
     }
   })
+  type: "light" | "dark";
+
   @Prop({
     type: String,
     default: "nav-slide"
@@ -73,9 +75,9 @@ export default class VNavbar extends Vue {
     const menuClass = {
       "is-active": this.menuIsShow
     };
-
+    const navbarClass = ["v-navbar", "is-" + this.type];
     return (
-      <div class="v-navbar is-light">
+      <div class={navbarClass}>
         <v-navbar-brand>
           {customBrand ? customBrand : defaultSlot}
           {tabletIcon}

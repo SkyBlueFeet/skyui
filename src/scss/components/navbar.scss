@@ -260,6 +260,9 @@
         &:hover {
           color: $active-color;
         }
+        &.active {
+          color: $active-color;
+        }
       }
 
       .navbar-link:hover,

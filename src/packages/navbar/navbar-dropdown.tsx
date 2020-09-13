@@ -67,8 +67,8 @@ export default class VNavbarDropdown extends Vue {
     let titleVNode: VNode;
     const textSlot = this.$slots.text;
 
-    const defaultSlot = (content: VNode | string) => {
-      return <div class="navbar-dropdown-title has-arrow">{content}</div>;
+    const defaultSlot = (text: VNode | string) => {
+      return <div class="navbar-item has-arrow">{text}</div>;
     };
 
     if (textSlot && textSlot[0].text) {
@@ -89,7 +89,7 @@ export default class VNavbarDropdown extends Vue {
 
   render(h: CreateElement) {
     let titleVNode: VNode = this.setTextSlot(h) || (
-      <div class="navbar-dropdown-title has-arrow">{this.text}</div>
+      <div class="navbar-item has-arrow">{this.text}</div>
     );
 
     return (

@@ -2,7 +2,7 @@
  * @Author: skybluefeet
  * @Date: 2020-03-03 20:26:17
  * @LastEditors: skyblue
- * @LastEditTime: 2020-04-08 22:48:19
+ * @LastEditTime: 2020-05-12 19:52:24
  -->
 <template>
   <div class="boxs">
@@ -98,7 +98,7 @@
           <h2>自定义导航</h2>
           <v-grid gutter="0">
             <v-cell-auto gutter="0">
-              <v-navbar>
+              <v-navbar type="dark">
                 <template slot="brand">
                   <img
                     src="https://bulma.io/images/bulma-logo.png"
@@ -107,33 +107,45 @@
                 </template>
 
                 <template slot="start">
-                  <v-navbar-link>12306</v-navbar-link>
-                  <v-navbar-link>12306</v-navbar-link>
+                  <!-- <v-navbar-item>12306</v-navbar-item>
+                  <v-navbar-item>12306</v-navbar-item>
                   <v-navbar-dropdown text="text">
+                    <template slot="text">
+                      <v-navbar-item>
+                        TEXT
+                      </v-navbar-item>
+                    </template>
                     <v-navbar-item>about We</v-navbar-item>
                     <v-navbar-divider></v-navbar-divider>
                     <v-navbar-item>about Website</v-navbar-item>
                     <v-navbar-item>Thank You</v-navbar-item>
-                  </v-navbar-dropdown>
+                  </v-navbar-dropdown> -->
                 </template>
                 <template slot="end">
-                  <v-navbar-item>
-                    <div class="buttons">
-                      <a class="button is-primary">
-                        <strong>Sign up</strong>
-                      </a>
-                      <a class="button is-light">Log in</a>
-                    </div>
-                  </v-navbar-item>
+                  <v-navbar-item>about We</v-navbar-item>
                   <v-navbar-dropdown text="About">
-                    <v-navbar-link>about We</v-navbar-link>
+                    <v-navbar-item>about We</v-navbar-item>
 
-                    <v-navbar-link>about Website</v-navbar-link>
+                    <v-navbar-item>about Website</v-navbar-item>
 
-                    <v-navbar-link>Thank You</v-navbar-link>
-
-                    <div class="navbar-link">Navbar Link</div>
+                    <v-navbar-item>Thank You</v-navbar-item>
                   </v-navbar-dropdown>
+                  <v-navbar-item>Thank You</v-navbar-item>
+                  <v-navbar-item>Thank You</v-navbar-item>
+                  <v-navbar-item>Thank You</v-navbar-item>
+                  <v-navbar-item>Thank You</v-navbar-item>
+                  <v-navbar-item>Thank You</v-navbar-item>
+                  <v-navbar-item type="is-primary">
+                    <v-button-group :addons="false">
+                      <v-button type="primary">
+                        <strong>log up</strong>
+                      </v-button>
+
+                      <v-button type="info">
+                        Log in
+                      </v-button>
+                    </v-button-group>
+                  </v-navbar-item>
                 </template>
               </v-navbar>
             </v-cell-auto>
