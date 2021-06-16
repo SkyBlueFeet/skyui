@@ -52,7 +52,7 @@
         "convert-source-map": "^1.7.0",
         "csso": "^4.0.2",
         "lodash": "^4.17.15",
-        "postcss": "^7.0.26",
+        "postcss": "^7.0.36",
         "postcss-load-config": "^2.1.0",
         "rollup": "^1.23.1",
         "rollup-plugin-babel": "^4.3.3",
